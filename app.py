@@ -5,6 +5,10 @@ import numpy as np
 import plotly.express as px
 import base64
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+from utils.ict_infrastructure import run_ict_view
+>>>>>>> Stashed changes
 from utils.air_quality import run_air_quality_view
 from utils.sentiment import analyze_sentiment
 =======
@@ -59,7 +63,7 @@ icons = {
     "Dashboard Overview": image_to_base64("assets/home.png"),
     "Traffic Congestion": image_to_base64("assets/traffic.png"),
     "Air Quality": image_to_base64("assets/airquality.png"),
-    "Public Transport": image_to_base64("assets/transport.png"),
+    "ICT Infrastructure": image_to_base64("assets/ict.png"), 
     "Sentiment Analysis": image_to_base64("assets/sentiment.png"),
     "Crime Analysis": image_to_base64("assets/crime.png")
 }
@@ -98,7 +102,7 @@ if section == "Dashboard Overview":
 
     - 🚦 **Traffic Congestion**: Real-time congestion hotspots using TomTom API and DBSCAN clustering.
     - 🌫️ **Air Quality**: Visualize PM2.5/PM10 pollution levels across city locations.
-    - 🚌 **Public Transport**: Passenger statistics across major public transit routes.
+    - 🏙️ **ICT Infrastructure**: represents the digital backbone of a smart city — including internet access, smart meters, and public Wi-Fi — enabling efficient services and real-time connectivity..
     - 💬 **Sentiment Analysis**: Public sentiment analysis on city-related tweets.
     - 🚨 **Crime Analysis**: AI-based analysis of crimes and criminal trends.
 
@@ -111,14 +115,9 @@ elif section == "Traffic Congestion":
 elif section == "Air Quality":
     run_air_quality_view()
 
-elif section == "Public Transport":
-    st.title("🚌 Public Transport Usage")
-    transport_df = pd.DataFrame({
-        "route": ["Route A", "Route B", "Route C"],
-        "passenger_count": [100, 150, 90]
-    })
-    fig3 = px.bar(transport_df, x="route", y="passenger_count", color="route")
-    st.plotly_chart(fig3, use_container_width=True)
+elif section == "ICT Infrastructure":
+    run_ict_view()
+
 
 elif section == "Sentiment Analysis":
     run_sentiment_analysis_view()
