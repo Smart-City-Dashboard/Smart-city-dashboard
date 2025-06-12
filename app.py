@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import base64
+from utils.air_quality import run_air_quality_view
 from utils.sentiment import analyze_sentiment
 from traffic_congestion import run_traffic_hotspot_view
 
@@ -103,14 +104,7 @@ elif section == "Traffic Congestion":
     run_traffic_hotspot_view()
 
 elif section == "Air Quality":
-    st.title("🌫️ Air Quality Trends")
-    air_df = pd.DataFrame({
-        "timestamp": pd.date_range(start="2023-01-01", periods=5, freq='D'),
-        "PM2.5": [35, 40, 30, 25, 45],
-        "location": ["Loc1", "Loc1", "Loc2", "Loc2", "Loc1"]
-    })
-    fig2 = px.line(air_df, x="timestamp", y="PM2.5", color="location")
-    st.plotly_chart(fig2, use_container_width=True)
+    run_air_quality_view()
 
 elif section == "Public Transport":
     st.title("🚌 Public Transport Usage")
