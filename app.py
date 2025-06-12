@@ -4,9 +4,14 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import base64
+<<<<<<< Updated upstream
 from utils.air_quality import run_air_quality_view
 from utils.sentiment import analyze_sentiment
+=======
+from sentiment_analysis import run_sentiment_analysis_view
+>>>>>>> Stashed changes
 from traffic_congestion import run_traffic_hotspot_view
+from crimeanalysis import run_crime_analysis_view
 
 def image_to_base64(path):
     with open(path, "rb") as image_file:
@@ -51,12 +56,12 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 icons = {
-    "Dashboard Overview": image_to_base64("assets/dashboard.png"),
+    "Dashboard Overview": image_to_base64("assets/home.png"),
     "Traffic Congestion": image_to_base64("assets/traffic.png"),
     "Air Quality": image_to_base64("assets/airquality.png"),
     "Public Transport": image_to_base64("assets/transport.png"),
     "Sentiment Analysis": image_to_base64("assets/sentiment.png"),
-    "Accident Prediction": image_to_base64("assets/accident.png")
+    "Crime Analysis": image_to_base64("assets/crime.png")
 }
 
 if "active_section" not in st.session_state:
@@ -95,7 +100,7 @@ if section == "Dashboard Overview":
     - 🌫️ **Air Quality**: Visualize PM2.5/PM10 pollution levels across city locations.
     - 🚌 **Public Transport**: Passenger statistics across major public transit routes.
     - 💬 **Sentiment Analysis**: Public sentiment analysis on city-related tweets.
-    - 🚨 **Accident Prediction**: AI-based cluster detection of road accident risks.
+    - 🚨 **Crime Analysis**: AI-based analysis of crimes and criminal trends.
 
     Use the sidebar to navigate to each section.
     """)
@@ -116,27 +121,8 @@ elif section == "Public Transport":
     st.plotly_chart(fig3, use_container_width=True)
 
 elif section == "Sentiment Analysis":
-    st.title("💬 Citizen Sentiment")
-    tweets_df = pd.DataFrame({
-        "text": ["Good city", "Bad traffic", "Love the park"]
-    })
-    tweets_df["sentiment"] = tweets_df["text"].apply(analyze_sentiment)
-    sentiment_counts = tweets_df["sentiment"].value_counts().reset_index()
-    sentiment_counts.columns = ["sentiment", "count"]
-    fig4 = px.pie(sentiment_counts, names="sentiment", values="count")
-    st.plotly_chart(fig4, use_container_width=True)
+    run_sentiment_analysis_view()
 
-elif section == "Accident Prediction":
-    st.title("🚨 Accident Prediction")
-    accident_df = pd.DataFrame({
-        "lat": np.random.uniform(40.7, 40.8, 50),
-        "lon": np.random.uniform(-74.02, -73.95, 50),
-        "severity": np.random.randint(1, 4, 50),
-        "predicted_risk": np.random.choice(["Low", "Medium", "High"], 50),
-        "location": ["Loc " + str(i) for i in range(50)]
-    })
-    fig_accident = px.scatter_mapbox(
-        accident_df, lat="lat", lon="lon", color="predicted_risk", size="severity",
-        mapbox_style="carto-darkmatter", zoom=12, hover_name="location"
-    )
-    st.plotly_chart(fig_accident, use_container_width=True)
+
+elif section == "Crime Analysis":
+    run_crime_analysis_view()
