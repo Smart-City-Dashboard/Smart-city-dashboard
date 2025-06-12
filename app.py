@@ -4,18 +4,13 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import base64
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
+
 from utils.ict_infrastructure import run_ict_view
->>>>>>> Stashed changes
 from utils.air_quality import run_air_quality_view
-from utils.sentiment import analyze_sentiment
-=======
-from sentiment_analysis import run_sentiment_analysis_view
->>>>>>> Stashed changes
-from traffic_congestion import run_traffic_hotspot_view
-from crimeanalysis import run_crime_analysis_view
+from utils.sentiment_analysis import run_sentiment_analysis_view
+
+from utils.traffic_congestion import run_traffic_hotspot_view
+from utils.crime_analysis import run_crime_analysis_view
 
 def image_to_base64(path):
     with open(path, "rb") as image_file:
