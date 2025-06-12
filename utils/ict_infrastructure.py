@@ -11,7 +11,7 @@ def run_ict_view():
         df.columns = df.columns.str.strip()
 
 
-        score_df = pd.read_csv("data/city_ict_scores.csv", sep='\t')
+        score_df = pd.read_csv("data/City_ict_scores.csv", sep='\t')
         score_df.columns = score_df.columns.str.strip()  # Optional cleanup
 
     except FileNotFoundError:
